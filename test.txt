@@ -1,0 +1,205 @@
+登录github
+zh  lcxgit/1243878247@qq.com
+mm  132321git
+旧的mm 13232195379lcx
+
+Git连接Github远程仓库
+1.配置一下自己的 Github 用户名 和 邮箱
+输入命令  git config --global user.name "lcxgit"
+输入命令  git config --global user.email "1243878247@qq.com"
+
+初始化 
+输入命令  git init
+
+将远程仓库里面的项目拉下来，本地同步合并
+输入命令  git pull origin maste
+若出现下面信息提示，
+fatal: refusing to merge unrelated histories ，
+意思是，拒绝不相关合并，更换拉取命令为：
+允许不相关的历史记录
+输入命令  git pull origin master --allow-unrelated-histories
+#git pull --rebase origin master
+
+
+克隆远程仓库到本地 （本地没有远程仓库的文件也可以推送覆盖，可以不用克隆所有文件下来）
+自己在github上创建的仓库url地址
+输入命令  git clone git@github.com:lcxgit/test.git
+
+
+2.生成ssh密码，配置 SSH Key 生成公钥 
+输入命令  ssh-keygen -t rsa -C "1243878247@qq.com"
+或者输入命令  ssh-keygen -C "1243878247@qq.com" -t rsa
+命令行输出（出现提示就一直回车就可以了）：
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/lcx/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Users/lcx/.ssh/id_rsa.
+Your public key has been saved in /c/Users/lcx/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:yeuquvZj/RQEpIWNKJABAhxLXocZTnvvp3JBI3vt4D8 1243878247@qq.com
+The key's randomart image is:
++---[RSA 2048]----+
+|@=.=+*+          |
+|*.*o=o..         |
+| + o..  .        |
+|    ...= .       |
+|      +.S        |
+|     ..+ +       |
+|     .o.*.       |
+|  . o..=oE       |
+| .o=oo+++..      |
++----[SHA256]-----+
+
+翻译：
+正在生成公共/私有rsa密钥对。
+输入保存密钥的文件(/c/Users/lcx/.ssh/id_rsa):
+输入密码短语（无密码短语为空）：
+再次输入相同的密码短语：
+您的标识已保存在/c/Users/lcx/.ssh/id_rsa中。
+您的公钥已保存在/c/Users/lcx/.ssh/id_rsa.pub中。
+关键指纹是：
+SHA256:yeuquvZj/RQEpIWNKJABAhxLXocZTnvvp3JBI3vt4D8公司1243878247@qq.com
+密钥的随机图像是：
++---[RSA 2048年]----+
+|@=.=+*+ |
+|**o=o|
+|+o|
+| ...= . |
+|+秒|
+| ..+ + |
+|.o.*|
+| . o、 .=运行经验|
+|.o=oo++|
++----[SHA256号]-----+
+
+然后去登录github，找到settings=>SSH and GPG keys,
+点击 New SSH key，添加 公钥已保存在/c/Users/lcx/.ssh/id_rsa.pub中的内容。
+titlt 任意填 key填 id_rsa.pub 里面的内容
+公钥路径  C:\Users\lcx\.ssh
+
+
+3.推送到远程仓库
+添加/修改文件 git add */a.txt (a.txt这里写要上传的文件名称,*是提交全部文件)
+进行提交,添加注释  git commit -m "test.txt 2021.6.1 更新(注释任一写)"
+进行推送到远程仓库  git push/git push -u origin master
+把本地库的内容推送到远程，使用 git push命令，实际上是把当前分支master推送到远程。
+执行此命令后会要求输入用户名、密码，验证通过后即开始上传。
+
+推送成功的状态
+$ git push -u origin master
+Username for 'https://github.com': lcxgit
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (8/8), 2.30 KiB | 590.00 KiB/s, done.
+Total 8 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/lcxgit/test.git
+   496b2d2..736ab7f  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+'的用户名'https://github.com'：lcxgit
+枚举对象：10，完成。
+计数对象：100%（10/10），完成。
+使用最多4个线程的增量压缩
+压缩对象：100%（7/7），完成。
+书写对象：100%（8/8），2.30 KiB | 590.00 KiB/s，完成。
+总计8（增量2），重用0（增量0）
+远程：解析增量：100%（2/2），完成2个本地对象。
+至https://github.com/lcxgit/test.git
+496b2d2..736ab7f主机->主机
+分支“master”设置为从“origin”跟踪远程分支“master”。
+
+将本地的仓库关联到github上。创建的仓库url地址
+有2个地址，任选一个
+输入命令  git remote add origin https://github.com/lcxgit/test.git
+输入命令  git remote add origin git@github.com:lcxgit/test.git
+
+输入命令  git add *
+输入命令  git commit -m "2021.6.1 更新"
+输入命令  git push -u origin master
+
+查看仓库内容区别
+查看不同状态
+输入命令  git status  
+
+查看具体的不同内容展示
+输入命令  git diff  
+
+使用git log命令查看历史提交记录，选择要回退的版本号，commit后面一串字符
+回退本地版本
+git reset --hard
+
+强制回退远程仓库到当前版本
+git push -f
+###    
+当前版本 
+输入命令  HEAD  
+  
+上个版本
+输入命令  HEAD^  
+  
+上上个版本
+输入命令  HEAD^^
+
+回退到100个版本之前
+输入命令  HEAD~100
+###
+
+本地强制上传到远程仓库，把远程的覆盖
+输入命令  git push -f origin master
+输入命令  git push origin master -f
+输入命令  git push -u -f origin master #强制推送(这样会使远程文件全部丢失，一般是不可取的)
+ 
+输入命令  git branch –a  #查看分支状态
+输入命令  git --help  #帮助命令
+输入命令  dir  #查看有哪些文件夹
+输入命令  git rm -r --cached aaa #删除 aaa文件夹
+输入命令  git commit -m "删除了 aaa"  #提交,添加操作说明
+
+输入命令  git init test && cd test  #新建仓库并进入文件夹
+输入命令  git config core.sparsecheckout true  #设置允许克隆子目录
+输入命令  echo 'tt*' >> .git/info  #设置要克隆的仓库的子目录路径,空格别漏
+输入命令  git remote add origin git@github.com:mygithub/test.git  #这里换成你要克隆的项目和库
+
+
+推送出现443错误
+fatal: unable to access 'https://github.com/lcxgit/test.git/': Failed to connect to github.com port 443: Timed out
+致命：无法访问'https://github.com/lcxgit/test.git/'：无法连接到github.com端口443:超时 
+解决方法
+使用命令行取消代理设置
+输入命令  git config --global --unset http.proxy
+或者输入命令  git config --global --unset https.proxy
+
+关于 “RPC failed; curl 18 transfer closed with outstanding read data remaining”错误
+输入命令  git config --global http.postBuffer 542428800
+
+
+教程
+https://www.jianshu.com/p/b55f7a841d4b
+
+
+project
+上传项目到Github，在本地项目目录下依次执行以下命令：
+将本地的仓库关联到github上。
+后面的https链接换成刚刚自己在github上创建的仓库url地址
+有2个地址，任选一个
+输入命令  git remote add origin https://github.com/lcxgit/project.git
+输入命令  git remote add origin git@github.com:lcxgit/project.git
+
+克隆到本地
+git clone git@github.com:lcxgit/project.git
+
+test
+上传项目到Github，在本地项目目录下依次执行以下命令：
+将本地的仓库关联到github上。
+后面的https链接换成刚刚自己在github上创建的仓库url地址
+有2个地址，任选一个
+输入命令  git remote add origin https://github.com/lcxgit/test.git
+输入命令  git remote add origin git@github.com:lcxgit/test.git
+
+克隆到本地
+git clone git@github.com:lcxgit/test.git
+
+
