@@ -122,10 +122,10 @@ Branch 'master' set up to track remote branch 'master' from 'origin'.
 
 查看仓库内容区别
 查看不同状态
-输入命令  git status  
+输入命令  git status
 
 查看具体的不同内容展示
-输入命令  git diff  
+输入命令  git diff
 
 使用git log命令查看历史提交记录，选择要回退的版本号，commit后面一串字符
 回退本地版本
@@ -135,16 +135,16 @@ git reset --hard
 git push -f
 ###    
 当前版本 
-输入命令  HEAD  
+输入命令  git reset --hard HEAD
   
 上个版本
-输入命令  HEAD^  
+输入命令  git reset --hard HEAD^
   
 上上个版本
-输入命令  HEAD^^
+输入命令  git reset --hard HEAD^^
 
 回退到100个版本之前
-输入命令  HEAD~100
+输入命令  git reset --hard HEAD~100
 ###
 
 本地强制上传到远程仓库，把远程的覆盖
